@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="theme-1">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/main.css"></link>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+	 
+    <title>Data display and filternig</title>
+  </head>
+  <body>
+	<nav>
+	 <ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Dataset</a>
+			<ul class="dropdown">
+				<li onclick="LoadDataset(event)"><a href="#" id="dataset1">Dataset 1</a></li>
+				<li onclick="LoadDataset(event)"><a href="#" id="dataset2">Dataset 2</a></li>
+			</ul>
+		</li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	 </ul>
+	 </nav>  
+	 <div class="result-container" id="resultContainer">
+	 <script src="../js/main.js"></script>
+  </body>
+</html>
