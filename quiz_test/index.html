@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css"></link>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <title>Quiz task</title>
+  </head>
+  <body>
+     <header>
+        <p>Answer questions to get a prize</p>   
+     </header>
+     <div class="questions">
+       <div>
+			<h4 class="formTitle">How many days can be in a month?</h4>
+			<div id="answerWrapper1AnswerOne" class="answer-wrapper">
+				<input type="checkbox" name="answerOne" id="answerOne1" onclick="HandleCheckbox(event,1)"/>
+				<label id="statusLabel1AnswerOne" class="status-label">27 days</label>
+			</div>
+			</br>
+			<div id="answerWrapper1AnswerTwo" class="answer-wrapper">
+				<input type="checkbox" name="answerTwo" id="answerTwo1" onclick="HandleCheckbox(event,1)"/>
+				<label id="statusLabel1AnswerTwo" class="status-label">32 days</label> 
+			</div>
+			</br>
+			<div id="answerWrapper1AnswerThree" class="answer-wrapper">
+				<input type="checkbox" name="answerThree" id="answerThree1" onclick="HandleCheckbox(event,1)"/>
+				<label id="statusLabel1AnswerThree" class="status-label">30 days</label>
+			</div>
+			</br>
+			<div id="answerWrapper1AnswerFour" class="answer-wrapper">
+				<input type="checkbox" name="answerFour" id="answerFour1" onclick="HandleCheckbox(event,1)"/>
+				<label id="statusLabel1AnswerFour" class="status-label">31 days</label> 
+			</div>
+		</div>
+		<div>
+			<h4 class="formTitle">Which numbers are prime?</h4>
+			<div id="answerWrapper2AnswerOne" class="answer-wrapper">
+				<input type="checkbox" name="answerOne" id="questionOne2" onclick="HandleCheckbox(event,2)"/>
+				<label id="statusLabel2AnswerOne" class="status-label">131</label>
+			</div>
+			</br>
+			<div id="answerWrapper2AnswerTwo" class="answer-wrapper">
+				<input type="checkbox" name="answerTwo" id="answerTwo2" onclick="HandleCheckbox(event,2)"/>
+				<label id="statusLabel2AnswerTwo" class="status-label">12</label> 
+			</div>
+			</br>
+			<div id="answerWrapper2AnswerThree" class="answer-wrapper">
+				<input type="checkbox" name="answerThree" id="answerThree2" onclick="HandleCheckbox(event,2)"/>
+				<label id="statusLabel2AnswerThree" class="status-label">21</label>
+			</div>
+			</br>
+			<div id="answerWrapper2AnswerFour" class="answer-wrapper">
+				<input type="checkbox" name="answerFour" id="answerFour2" onclick="HandleCheckbox(event,2)"/>
+				<label id="statusLabel2AnswerFour" class="status-label">19</label> 
+			</div>
+        </div>
+		<div>
+			<h4 class="formTitle">Which numbers are irational?</h4>
+			<div id="answerWrapper3AnswerOne" class="answer-wrapper">
+				<input type="checkbox" name="answerOne" id="answerOne3" onclick="HandleCheckbox(event,3)"/>
+				<label id="statusLabel3AnswerOne" class="status-label">pi</label>
+			</div>
+			</br>
+			<div id="answerWrapper3AnswerTwo" class="answer-wrapper">
+				<input type="checkbox" name="answerTwo" id="answerTwo3" onclick="HandleCheckbox(event,3)"/>
+				<label id="statusLabel3AnswerTwo" class="status-label">1.23</label> 
+			</div>
+			</br>
+			<div id="answerWrapper3AnswerThree" class="answer-wrapper">
+				<input type="checkbox" name="answerThree" id="answerThree3" onclick="HandleCheckbox(event,3)"/>
+				<label id="statusLabel3AnswerThree" class="status-label">e</label>
+			</div>
+			</br>
+			<div id="answerWrapper3AnswerFour" class="answer-wrapper">
+				<input type="checkbox" name="answerFour" id="answerFour3" onclick="HandleCheckbox(event,3)"/>
+				<label id="statusLabel3AnswerFour" class="status-label">2.21</label> 
+			</div>
+		</div>
+		</br>
+        <div class="form-btns">
+                <input type="button" value="Check" class="check-btn" onmousedown="HandleCheck()" onmouseup="HandleCheckUP()" ondblclick="HandleShowBtn()">
+                <input type="button" value="Show answers" onmousedown="HandleShow()" onmouseup="HandleShowUP()" class="show-btn" hidden>
+                <input type="button" value="Reset" class="reset-btn" onclick="HandleReset()">
+         </div>
+     </div>
+     <script src="./main.js"></script>
+  </body>
+</html>
