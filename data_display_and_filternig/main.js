@@ -13,6 +13,7 @@ var uniqueGenreArr=[];
 var uniqueStyleArr=[];
 var tmpGenre = "";
 var tmpStyle = "";
+var searchStr="";
 
 async function GetData(dataset){
 	  const resp = await fetch(endpoint[dataset]);
@@ -115,6 +116,7 @@ function HandleResetAllFilters(){
 			inputName.value="";
 			tmpGenre = "";
 			tmpStyle = "";
+			searchStr="";
 		})
 		
 		result.append(table);
@@ -126,17 +128,32 @@ function HandleNameReset(){
 		
 		table = document.createElement("table");
 		table.appendChild(CreateHeader(table));
-		
+		inputName=document.getElementById("inputName");
+		inputName.value="";
+		searchStr="";
 		
 		GetData(dataset)
 		.then(res=>{
-			 
 			for(const obj in res){
-				 
-				table.appendChild(CreateBody(obj,res[obj]))
+				if(tmpGenre!==""&&tmpStyle!==""){
+					if(obj.toUpperCase().includes(searchStr.toUpperCase())&&resultSet[obj].genre===tmpGenre&&resultSet[obj].style===tmpStyle){
+						table.appendChild(CreateBody(obj,resultSet[obj]))
+					}
+				}else if(tmpGenre!==""){
+					if(obj.toUpperCase().includes(searchStr.toUpperCase())&&resultSet[obj].genre===tmpGenre){
+						table.appendChild(CreateBody(obj,resultSet[obj]))
+					}
+				}else if(tmpStyle!==""){
+					if(obj.toUpperCase().includes(searchStr.toUpperCase())&&resultSet[obj].style===tmpStyle){
+						table.appendChild(CreateBody(obj,resultSet[obj]))
+					}
+				}else{
+					if(obj.toUpperCase().includes(searchStr.toUpperCase())){
+						table.appendChild(CreateBody(obj,resultSet[obj]))
+					}
+				}
 			}
-			inputName=document.getElementById("inputName");
-			inputName.value="";
+			
 		})
 		
 		result.append(table);
@@ -152,8 +169,22 @@ function HandleGenreDropdown(e){
 	tmpGenre=uniqueGenreArr[e.target.value-1];
 				
 	for(const obj in resultSet){
-			if(resultSet[obj].genre===tmpGenre){
-				table.appendChild(CreateBody(obj,resultSet[obj]))
+			if(tmpStyle!==""&&searchStr!==""){
+				if(resultSet[obj].genre===tmpGenre&&obj.toUpperCase().includes(searchStr.toUpperCase())&&resultSet[obj].style===tmpStyle){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else if(tmpStyle!==""){
+				if(resultSet[obj].genre===tmpGenre&&resultSet[obj].style===tmpStyle){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else if(searchStr!==""){
+				if(resultSet[obj].genre===tmpGenre&&obj.toUpperCase().includes(searchStr.toUpperCase())){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else{
+				if(resultSet[obj].genre===tmpGenre){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
 			}
 	}
 	
@@ -171,8 +202,22 @@ function HandleStyleDropdown(e){
 	tmpStyle = uniqueStyleArr[e.target.value-1];
 				
 	for(const obj in resultSet){
-			if(resultSet[obj].style===tmpStyle){
-				table.appendChild(CreateBody(obj,resultSet[obj]))
+			if(tmpGenre!==""&&searchStr!==""){
+				if(resultSet[obj].style===tmpStyle&&obj.toUpperCase().includes(searchStr.toUpperCase())&&resultSet[obj].genre===tmpGenre){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else if(tmpGenre!==""){
+				if(resultSet[obj].style===tmpStyle&&resultSet[obj].genre===tmpGenre){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else if(searchStr!==""){
+				if(resultSet[obj].genre===tmpStyle&&obj.toUpperCase().includes(searchStr.toUpperCase())){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
+			}else{
+				if(resultSet[obj].style===tmpStyle){
+					table.appendChild(CreateBody(obj,resultSet[obj]))
+				}
 			}
 	}
 	
@@ -317,7 +362,6 @@ function SetDataset(dataset) {
 			result.append(table);
 			
 	});	 
-    
 }
 
 function LoadDataset(e) {
@@ -326,7 +370,7 @@ function LoadDataset(e) {
 		uniqueStyleArr=[];
 		tableContent.remove();
 		 
-		 document.getElementById("resetAllBtn").remove();
+		document.getElementById("resetAllBtn").remove();
 		document.getElementById("filterNameWrapper").remove();
 		document.getElementById("dropDownWrapper").remove();
 		
@@ -334,8 +378,8 @@ function LoadDataset(e) {
 }
 
 function FilterGamesByName(e) {
-		let searchStr=e.target.value;
-		 
+		searchStr=e.target.value;
+		
 		table.remove();
 		table = document.createElement("table");
 		table.appendChild(CreateHeader(table));
