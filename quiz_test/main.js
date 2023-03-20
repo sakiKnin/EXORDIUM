@@ -1,5 +1,6 @@
 var questionArr = [{"answerOne":false,"answerTwo":false,"answerThree":false,"answerFour":false},{"answerOne":false,"answerTwo":false,"answerThree":false,"answerFour":false},{"answerOne":false,"answerTwo":false,"answerThree":false,"answerFour":false}];
 const answerArr = [{"answerOne":false,"answerTwo":false,"answerThree":true,"answerFour":true},{"answerOne":true,"answerTwo":false,"answerThree":false,"answerFour":true},{"answerOne":true,"answerTwo":false,"answerThree":true,"answerFour":false}];
+const colorDict = {'1':'rgb(248,243,199)','2':'#fff'}
 
 const checkBtn = document.querySelector('.check-btn');
 const resetBtn = document.querySelector('.reset-btn');
@@ -13,10 +14,13 @@ const statusLabel="statusLabel";
 const answerWrapperPrefix="answerWrapper";
 
 function HandleCheckbox(e,questionNum){
-			questionArr[questionNum-1][e.target.name]=!questionArr[questionNum-1][e.target.name];
+			questionArr[questionNum-1][e.target.name]=!questionArr[questionNum-1][e.target.name]; 
 }
 
 function HandleCheck(){
+	
+ 
+	 
 	
 	let answerWrapper;
 	let img;
@@ -24,7 +28,7 @@ function HandleCheck(){
 	
 	for(let i=0;i<questionArr.length;i++){
 		for(const obj in questionArr[i]){
-			tmpStr=(i+1) +obj.charAt(0).toUpperCase() + obj.slice(1);
+			tmpStr = (i+1) +obj.charAt(0).toUpperCase() + obj.slice(1);
 			tmpLabel = document.getElementById(statusLabel + tmpStr);
 			answerWrapper = document.getElementById(answerWrapperPrefix + tmpStr);
 			img = document.createElement("img");
@@ -79,10 +83,7 @@ function HandleCheckUP(){
 
 function HandleReset(){
 	
-	console.log("handle reset")
-	
 	for(let i=0;i<questionArr.length;i++){
-		
 		for(const obj in questionArr[i]){
 			if(questionArr[i][obj]){
 				questionArr[i][obj]=false;
@@ -105,27 +106,16 @@ function HandleShowBtn(){
 	}
 }
 
-function HandleShow(){
-	for(let i=0;i<questionArr.length;i++){
-		for(const obj in questionArr[i]){
-			tmpLabel = document.getElementById(statusLabel + (i+1) + obj.charAt(0).toUpperCase() + obj.slice(1));
-			if(answerArr[i][obj]){
-				tmpLabel.style.backgroundColor='rgb(248,243,199)';
-			} 
-		}
-	}
-}
-
-function HandleShowUP(){
-	for(let i=0;i<questionArr.length;i++){
-		for(const obj in questionArr[i]){
-			tmpLabel = document.getElementById(statusLabel + (i+1) + obj.charAt(0).toUpperCase() + obj.slice(1));
-			if(answerArr[i][obj]){
-				tmpLabel.style.backgroundColor='#fff';
-			
-			} 
-		}
-	}
+function HandleShow(colorNum){
 	 
+	for(let i=0;i<questionArr.length;i++){
+		for(const obj in questionArr[i]){
+			tmpLabel = document.getElementById(statusLabel + (i+1) + obj.charAt(0).toUpperCase() + obj.slice(1));
+			if(answerArr[i][obj]){
+				tmpLabel.style.backgroundColor=colorDict[colorNum];
+			} 
+		}
+	}
 }
+ 
 

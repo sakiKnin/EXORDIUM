@@ -39,7 +39,7 @@
 		<div>
 			<h4 class="formTitle">Which numbers are prime?</h4>
 			<div id="answerWrapper2AnswerOne" class="answer-wrapper">
-				<input type="checkbox" name="answerOne" id="questionOne2" onclick="HandleCheckbox(event,2)"/>
+				<input type="checkbox" name="answerOne" id="answerOne2" onclick="HandleCheckbox(event,2)"/>
 				<label id="statusLabel2AnswerOne" class="status-label">131</label>
 			</div>
 			</br>
@@ -83,7 +83,7 @@
 		</br>
         <div class="form-btns">
                 <input type="button" value="Check" class="check-btn" onmousedown="HandleCheck()" onmouseup="HandleCheckUP()" ondblclick="HandleShowBtn()">
-                <input type="button" value="Show answers" onmousedown="HandleShow()" onmouseup="HandleShowUP()" class="show-btn" hidden>
+                <input type="button" value="Show answers" onmousedown="HandleShow(1)" onmouseup="HandleShow(2)" class="show-btn" hidden>
                 <input type="button" value="Reset" class="reset-btn" onclick="HandleReset()">
          </div>
      </div>
