@@ -82,9 +82,9 @@
 		</div>
 		</br>
         <div class="form-btns">
-                <input type="button" value="Check" class="check-btn" onmousedown="HandleCheck()" onmouseup="HandleCheckUP()" ondblclick="HandleShowBtn()">
-                <input type="button" value="Show answers" onmousedown="HandleShow(1)" onmouseup="HandleShow(2)" class="show-btn" hidden>
-                <input type="button" value="Reset" class="reset-btn" onclick="HandleReset()">
+                <input type="button" value="check" class="check-btn" onmousedown="HandleBtn(event,true)" onmouseup="HandleBtn(event,false)" ondblclick="HandleShowBtn()">
+                <input type="button" value="show" onmousedown="HandleBtn(event,true)" onmouseup="HandleBtn(event,false)" class="show-btn" hidden>
+                <input type="button" value="reset" class="reset-btn" onclick="HandleBtn(event,true)">
          </div>
      </div>
      <script src="./main.js"></script>
