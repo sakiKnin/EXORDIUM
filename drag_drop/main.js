@@ -1,8 +1,3 @@
-const checkBtn = document.querySelector('.check-btn');
-const resetBtn = document.querySelector('.reset-btn');
-const showBtn = document.querySelector('.show-btn');
-
- 
 var answerArr = [{"snowman":false,"skiing":false},{"blossoming":false,"flowers":false},{"sea":false,"iceCream":false},{"leafsFalling":false,"chestnut":false}];
 
 var tempAnswersDict = {"snowman":"startContainer","skiing":"startContainer","blossoming":"startContainer","flowers":"startContainer","sea":"startContainer","iceCream":"startContainer","leafsFalling":"startContainer","chestnut":"startContainer"};
@@ -11,68 +6,91 @@ const answersDict = {"snowman":"winterContainer","skiing":"winterContainer","blo
 
 var isMovedDict = {"snowman":false,"skiing":false,"blossoming":false,"flowers":false,"sea":false,"iceCream":false,"leafsFalling":false,"chestnut":false};
 
-var tmpSeason;
 
 var isShowBtn=false;
+
+
+const checkBtn = document.querySelector('.check-btn');
+const resetBtn = document.querySelector('.reset-btn');
+const showBtn = document.querySelector('.show-btn');
+
+var tmpItem;
+
+$(document).ready(function(){
+			$(".start-container").sortable({connectWith:".winter-container,.spring-container,.summer-container,.autumn-container"});
+			 
+			$(".winter-container").sortable({connectWith:".spring-container,.summer-container,.autumn-container,.start-container"});
+			$(".spring-container").sortable({connectWith:".winter-container,.summer-container,.autumn-container,.start-container"});
+			$(".summer-container").sortable({connectWith:".winter-container,.spring-container,.autumn-container,.start-container"});
+			$(".autumn-container").sortable({connectWith:".winter-container,.spring-container,.summer-container,.start-container"});
+			
+			$( "#winterContainer" ).droppable({
+				drop: function( event, ui ) {
+					console.log("dropped");
+				 
+					console.log(ui.draggable.attr('id'))
+					tmpItem = ui.draggable.attr('id');
+					isMovedDict[tmpItem]=true;
+					if(answerArr[0][tmpItem]!==undefined){
+						answerArr[0][tmpItem]=true;
+					}
+					tempAnswersDict[tmpItem]="winterContainer";
+				}
+			});
+			
+			$( ".spring-container" ).droppable({
+				drop: function( event, ui ) {
+					console.log("dropped");
+				 
+					console.log(ui.draggable.attr('id'))
+					tmpItem = ui.draggable.attr('id');
+					isMovedDict[tmpItem]=true;
+					if(answerArr[1][tmpItem]!==undefined){
+						answerArr[1][tmpItem]=true;
+					}
+					tempAnswersDict[tmpItem]="springContainer";
+				}
+			});
+			
+			$( ".summer-container" ).droppable({
+				drop: function( event, ui ) {
+					console.log("dropped");
+				 
+					console.log(ui.draggable.attr('id'))
+					tmpItem = ui.draggable.attr('id');
+					isMovedDict[tmpItem]=true;
+					if(answerArr[2][tmpItem]!==undefined){
+						answerArr[2][tmpItem]=true;
+					}
+					tempAnswersDict[tmpItem]="summerContainer";
+				}
+			});
+			
+			$( ".autumn-container" ).droppable({
+				drop: function( event, ui ) {
+					console.log("dropped");
+				 
+					console.log(ui.draggable.attr('id'))
+					tmpItem = ui.draggable.attr('id');
+					isMovedDict[tmpItem]=true;
+					if(answerArr[2][tmpItem]!==undefined){
+						answerArr[2][tmpItem]=true;
+					}
+					tempAnswersDict[tmpItem]="autumnContainer";
+				}
+			});
+			 
+});
 
 function HandleCheck(){
 	
 	console.log("handle check down");
 	
-	tmpSeason = document.querySelector(".winter-container");
-	console.log(tmpSeason.childElementCount)
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			if(answerArr[0][child.id]!==undefined){
-				answerArr[0][child.id]=true;
-			}
-		}
-	}
-	
-	tmpSeason = document.querySelector(".spring-container");
-	console.log(tmpSeason.childElementCount)
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			if(answerArr[1][child.id]!==undefined){
-				answerArr[1][child.id]=true;
-			}
-		}
-	}
-	
-	tmpSeason = document.querySelector(".summer-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			if(answerArr[2][child.id]!==undefined){
-				answerArr[2][child.id]=true;
-			}
-		}
-	}
-	
-	tmpSeason = document.querySelector(".autumn-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			if(answerArr[3][child.id]!==undefined){
-				answerArr[3][child.id]=true;
-			}
-		}
-	}
-	
 	let tmpElement;
 	let img;
 	
 	let tmpWrapper;
+	var parent;
 	
 	for(let i = 0; i<answerArr.length; i++){
 		for(const obj in answerArr[i]){
@@ -91,7 +109,7 @@ function HandleCheck(){
 					img.src="./images/green-checkmark.svg";
 					img.id="imgCheckmark";
 					img.appendAfter(tmpElement);
-					var parent=tmpElement.parentNode;
+					parent=tmpElement.parentNode;
 					parent.appendChild(tmpWrapper);
 					tmpWrapper.appendChild(tmpElement);
 					tmpWrapper.appendChild(img);
@@ -109,7 +127,7 @@ function HandleCheck(){
 					img.appendAfter(tmpElement);
 					tmpElement.appendChild(tmpWrapper);
 					 
-					var parent=tmpElement.parentNode;
+					parent=tmpElement.parentNode;
 					parent.appendChild(tmpWrapper);
 					tmpWrapper.appendChild(tmpElement);
 					tmpWrapper.appendChild(img);
@@ -119,10 +137,6 @@ function HandleCheck(){
 		}
 	}
 }
-
-Element.prototype.appendAfter = function(element) {
-  element.parentNode.insertBefore(this, element.nextSibling);
-}, false;
 
 function HandleCheckUP(){
 	
@@ -147,47 +161,12 @@ function HandleCheckUP(){
 			}
 		}
 	}
- 
 }
 
 function HandleReset(){
 	
 	console.log("handle reset");
 	
-	
-	tmpSeason = document.querySelector(".winter-container");
-	console.log(tmpSeason.childElementCount)
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			isMovedDict[child.id]=true; 
-		}
-	}
-	
-	tmpSeason = document.querySelector(".spring-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			isMovedDict[child.id]=true; 
-		}
-	}
-	
-	tmpSeason = document.querySelector(".summer-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			isMovedDict[child.id]=true;
-		}
-	}
-	
-	tmpSeason = document.querySelector(".autumn-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			isMovedDict[child.id]=true;
-		}
-	}
- 
 	for(const obj in isMovedDict){
 		if(isMovedDict[obj]){
 				 console.log(obj)
@@ -213,48 +192,6 @@ function HandleShowBtn(){
 
 function HandleShow(){
 	
-	tmpSeason = document.querySelector(".winter-container");
-	console.log(tmpSeason.childElementCount)
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			tempAnswersDict[child.id]="winterContainer";
-		}
-	}
-	
-	tmpSeason = document.querySelector(".spring-container");
-	console.log(tmpSeason.childElementCount)
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			tempAnswersDict[child.id]="springContainer";
-		}
-	}
-	
-	tmpSeason = document.querySelector(".summer-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			tempAnswersDict[child.id]="summerContainer";
-		}
-	}
-	
-	tmpSeason = document.querySelector(".autumn-container");
-	
-	if(tmpSeason.childElementCount>0){
-		for (const child of tmpSeason.children){
-			console.log(child.id);
-			isMovedDict[child.id]=true;
-			tempAnswersDict[child.id]="autumnContainer";
-		}
-	}
-	 
 	for(const obj in answersDict){
 			$("#" + obj).appendTo("#" + answersDict[obj]).hide().show('slow');
 	}
@@ -269,4 +206,3 @@ function HandleShowUP(){
 	 
 	 
 }
-
