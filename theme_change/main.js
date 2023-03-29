@@ -8,12 +8,12 @@ function setTheme(themeName) {
 function toggleTheme(e) {
 		let theme=e.target.id;
 		 
-		if(localStorage.getItem('theme')==theme){
+		if(localStorage.getItem('theme')===theme){
 			return;
-		}else{
-			setTheme(theme);
-		}
-		 	 
+		} 
+			
+		setTheme(theme);
+		 
 }
 // Immediately invoked function to set the theme on initial load
 (function () {
