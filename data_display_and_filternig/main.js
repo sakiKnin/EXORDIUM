@@ -104,7 +104,7 @@ function HandleResetAllFilters(){
 		
 		table = document.createElement("table");
 		table.appendChild(CreateHeader(table));
-		
+		dataset=localStorage.getItem('dataset');
 		GetData(dataset)
 		.then(res=>{
 			 
@@ -131,7 +131,7 @@ function HandleNameReset(){
 		inputName=document.getElementById("inputName");
 		inputName.value="";
 		searchStr="";
-		
+		dataset=localStorage.getItem('dataset');
 		GetData(dataset)
 		.then(res=>{
 			for(const obj in res){
@@ -366,6 +366,12 @@ function SetDataset(dataset) {
 
 function LoadDataset(e) {
 		dataset=e.target.id;
+		
+		if(dataset===localStorage.getItem('dataset')){
+			return
+		}
+		
+		localStorage.setItem('dataset', dataset);
 		uniqueGenreArr=[];
 		uniqueStyleArr=[];
 		tableContent.remove();
@@ -410,7 +416,5 @@ function FilterGamesByName(e) {
 // Immediately invoked function to set the dataset on initial load
 (function () {
        SetDataset(dataset);
+	   localStorage.setItem('dataset', 'dataset1');
 })();
-
-
- 
