@@ -3,14 +3,14 @@
 	
 }
 
-.theme-1{
+#theme1{
     --color-primary: rgb(253, 178, 89);
     --color-secondary: rgb(230, 172, 96);
     --background-highlight: rgb(248, 243, 199);
 	--background: #fff;
     --font-color: #333;
   }
-  .theme-2{
+  #theme2{
     --color-primary: rgb(63, 207, 152);
     --color-secondary: rgb(81, 246, 152);
     --background-highlight: rgb(245, 255, 250);
